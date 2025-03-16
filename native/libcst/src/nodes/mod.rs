@@ -51,7 +51,7 @@ pub use traits::{Inflate, ParenthesizedNode, WithComma, WithLeadingLines};
 
 pub(crate) mod inflate_helpers;
 
-pub(crate) mod deflated {
+pub mod deflated {
     pub use super::expression::{
         DeflatedArg as Arg, DeflatedAsynchronous as Asynchronous, DeflatedAttribute as Attribute,
         DeflatedAwait as Await, DeflatedBaseSlice as BaseSlice,

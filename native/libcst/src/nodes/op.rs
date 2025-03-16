@@ -25,7 +25,7 @@ pub struct Semicolon<'a> {
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
     #[cfg_attr(feature = "py", skip_py)]
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Semicolon<'a> {
@@ -60,7 +60,7 @@ pub struct Comma<'a> {
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
     #[cfg_attr(feature = "py", skip_py)]
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Comma<'a> {
@@ -111,7 +111,7 @@ pub struct AssignEqual<'a> {
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
     #[cfg_attr(feature = "py", skip_py)]
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for AssignEqual<'a> {
@@ -148,7 +148,7 @@ pub struct Dot<'a> {
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
     #[cfg_attr(feature = "py", skip_py)]
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Dot<'a> {
@@ -184,7 +184,7 @@ impl<'r, 'a> DeflatedDot<'r, 'a> {
 #[cst_node]
 pub struct ImportStar {}
 
-pub(crate) fn make_importstar<'r, 'a>() -> DeflatedImportStar<'r, 'a> {
+pub fn make_importstar<'r, 'a>() -> DeflatedImportStar<'r, 'a> {
     DeflatedImportStar {
         _phantom: Default::default(),
     }
@@ -1019,7 +1019,7 @@ pub struct Colon<'a> {
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
     #[cfg_attr(feature = "py", skip_py)]
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedColon<'r, 'a> {
@@ -1400,7 +1400,7 @@ pub struct BitOr<'a> {
     pub whitespace_before: ParenthesizableWhitespace<'a>,
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedBitOr<'r, 'a> {

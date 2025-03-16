@@ -143,7 +143,7 @@ pub struct ParamSlash<'a> {
     pub comma: Option<Comma<'a>>,
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> ParamSlash<'a> {
@@ -233,7 +233,7 @@ pub struct Param<'a> {
     pub whitespace_after_star: ParenthesizableWhitespace<'a>,
     pub whitespace_after_param: ParenthesizableWhitespace<'a>,
 
-    pub(crate) star_tok: Option<TokenRef<'a>>,
+    pub star_tok: Option<TokenRef<'a>>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedParam<'r, 'a> {
@@ -328,7 +328,7 @@ pub struct Arg<'a> {
     pub whitespace_after_star: ParenthesizableWhitespace<'a>,
     pub whitespace_after_arg: ParenthesizableWhitespace<'a>,
 
-    pub(crate) star_tok: Option<TokenRef<'a>>,
+    pub star_tok: Option<TokenRef<'a>>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedArg<'r, 'a> {
@@ -396,7 +396,7 @@ pub struct LeftParen<'a> {
     /// Any space that appears directly after this left parenthesis.
     pub whitespace_after: ParenthesizableWhitespace<'a>,
 
-    pub(crate) lpar_tok: TokenRef<'a>,
+    pub lpar_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for LeftParen<'a> {
@@ -423,7 +423,7 @@ pub struct RightParen<'a> {
     /// Any space that appears directly before this right parenthesis.
     pub whitespace_before: ParenthesizableWhitespace<'a>,
 
-    pub(crate) rpar_tok: TokenRef<'a>,
+    pub rpar_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for RightParen<'a> {
@@ -738,8 +738,8 @@ pub struct Call<'a> {
     pub whitespace_after_func: ParenthesizableWhitespace<'a>,
     pub whitespace_before_args: ParenthesizableWhitespace<'a>,
 
-    pub(crate) lpar_tok: TokenRef<'a>,
-    pub(crate) rpar_tok: TokenRef<'a>,
+    pub lpar_tok: TokenRef<'a>,
+    pub rpar_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedCall<'r, 'a> {
@@ -879,7 +879,7 @@ pub struct StarredElement<'a> {
     pub rpar: Vec<RightParen<'a>>,
     pub whitespace_before_value: ParenthesizableWhitespace<'a>,
 
-    pub(crate) star_tok: TokenRef<'a>,
+    pub star_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> DeflatedStarredElement<'r, 'a> {
@@ -1118,7 +1118,7 @@ impl<'r, 'a> Inflate<'a> for DeflatedListComp<'r, 'a> {
 #[derive(Default)]
 pub struct LeftSquareBracket<'a> {
     pub whitespace_after: ParenthesizableWhitespace<'a>,
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for LeftSquareBracket<'a> {
@@ -1143,7 +1143,7 @@ impl<'r, 'a> Inflate<'a> for DeflatedLeftSquareBracket<'r, 'a> {
 #[derive(Default)]
 pub struct RightSquareBracket<'a> {
     pub whitespace_before: ParenthesizableWhitespace<'a>,
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for RightSquareBracket<'a> {
@@ -1217,7 +1217,7 @@ pub struct DictComp<'a> {
     pub whitespace_before_colon: ParenthesizableWhitespace<'a>,
     pub whitespace_after_colon: ParenthesizableWhitespace<'a>,
 
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedDictComp<'r, 'a> {
@@ -1270,7 +1270,7 @@ impl<'a> Codegen<'a> for DictComp<'a> {
 #[cst_node]
 pub struct LeftCurlyBrace<'a> {
     pub whitespace_after: ParenthesizableWhitespace<'a>,
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Default for LeftCurlyBrace<'a> {
@@ -1302,7 +1302,7 @@ impl<'a> Codegen<'a> for LeftCurlyBrace<'a> {
 #[cst_node]
 pub struct RightCurlyBrace<'a> {
     pub whitespace_before: ParenthesizableWhitespace<'a>,
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Default for RightCurlyBrace<'a> {
@@ -1343,9 +1343,9 @@ pub struct CompFor<'a> {
     pub whitespace_before_in: ParenthesizableWhitespace<'a>,
     pub whitespace_after_in: ParenthesizableWhitespace<'a>,
 
-    pub(crate) async_tok: Option<TokenRef<'a>>,
-    pub(crate) for_tok: TokenRef<'a>,
-    pub(crate) in_tok: TokenRef<'a>,
+    pub async_tok: Option<TokenRef<'a>>,
+    pub for_tok: TokenRef<'a>,
+    pub in_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for CompFor<'a> {
@@ -1434,7 +1434,7 @@ impl<'a> Codegen<'a> for Asynchronous<'a> {
     }
 }
 
-pub(crate) fn make_async<'r, 'a>() -> DeflatedAsynchronous<'r, 'a> {
+pub fn make_async<'r, 'a>() -> DeflatedAsynchronous<'r, 'a> {
     DeflatedAsynchronous {
         _phantom: Default::default(),
     }
@@ -1446,7 +1446,7 @@ pub struct CompIf<'a> {
     pub whitespace_before: ParenthesizableWhitespace<'a>,
     pub whitespace_before_test: ParenthesizableWhitespace<'a>,
 
-    pub(crate) if_tok: TokenRef<'a>,
+    pub if_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for CompIf<'a> {
@@ -1744,7 +1744,7 @@ pub struct StarredDictElement<'a> {
     pub comma: Option<Comma<'a>>,
     pub whitespace_before_value: ParenthesizableWhitespace<'a>,
 
-    pub(crate) star_tok: TokenRef<'a>,
+    pub star_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> DeflatedStarredDictElement<'r, 'a> {
@@ -1794,7 +1794,7 @@ pub struct Index<'a> {
     pub star: Option<&'a str>,
     pub whitespace_after_star: Option<ParenthesizableWhitespace<'a>>,
 
-    pub(crate) star_tok: Option<TokenRef<'a>>,
+    pub star_tok: Option<TokenRef<'a>>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedIndex<'r, 'a> {
@@ -1969,8 +1969,8 @@ pub struct IfExp<'a> {
     pub whitespace_before_else: ParenthesizableWhitespace<'a>,
     pub whitespace_after_else: ParenthesizableWhitespace<'a>,
 
-    pub(crate) if_tok: TokenRef<'a>,
-    pub(crate) else_tok: TokenRef<'a>,
+    pub if_tok: TokenRef<'a>,
+    pub else_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedIfExp<'r, 'a> {
@@ -2036,7 +2036,7 @@ pub struct Lambda<'a> {
     pub rpar: Vec<RightParen<'a>>,
     pub whitespace_after_lambda: Option<ParenthesizableWhitespace<'a>>,
 
-    pub(crate) lambda_tok: TokenRef<'a>,
+    pub lambda_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedLambda<'r, 'a> {
@@ -2090,7 +2090,7 @@ pub struct From<'a> {
     pub whitespace_before_from: Option<ParenthesizableWhitespace<'a>>,
     pub whitespace_after_from: ParenthesizableWhitespace<'a>,
 
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> From<'a> {
@@ -2162,7 +2162,7 @@ pub struct Yield<'a> {
     pub rpar: Vec<RightParen<'a>>,
     pub whitespace_after_yield: Option<ParenthesizableWhitespace<'a>>,
 
-    pub(crate) yield_tok: TokenRef<'a>,
+    pub yield_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedYield<'r, 'a> {
@@ -2212,7 +2212,7 @@ pub struct Await<'a> {
     pub rpar: Vec<RightParen<'a>>,
     pub whitespace_after_await: ParenthesizableWhitespace<'a>,
 
-    pub(crate) await_tok: TokenRef<'a>,
+    pub await_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedAwait<'r, 'a> {
@@ -2271,7 +2271,7 @@ pub struct ConcatenatedString<'a> {
 
     // we capture the next token after each string piece so Inflate can extract the
     // whitespace between individual pieces
-    pub(crate) right_tok: TokenRef<'a>,
+    pub right_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedConcatenatedString<'r, 'a> {
@@ -2352,7 +2352,7 @@ impl<'a> Codegen<'a> for FormattedStringText<'a> {
     }
 }
 
-pub(crate) fn make_fstringtext<'r, 'a>(value: &'a str) -> DeflatedFormattedStringText<'r, 'a> {
+pub fn make_fstringtext<'r, 'a>(value: &'a str) -> DeflatedFormattedStringText<'r, 'a> {
     DeflatedFormattedStringText {
         value,
         _phantom: Default::default(),
@@ -2368,10 +2368,10 @@ pub struct FormattedStringExpression<'a> {
     pub whitespace_after_expression: ParenthesizableWhitespace<'a>,
     pub equal: Option<AssignEqual<'a>>,
 
-    pub(crate) lbrace_tok: TokenRef<'a>,
+    pub lbrace_tok: TokenRef<'a>,
     // This is None if there's an equal sign, otherwise it's the first token of
     // (conversion, format spec, right brace) in that order
-    pub(crate) after_expr_tok: Option<TokenRef<'a>>,
+    pub after_expr_tok: Option<TokenRef<'a>>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedFormattedStringExpression<'r, 'a> {
@@ -2480,7 +2480,7 @@ pub struct NamedExpr<'a> {
     pub whitespace_before_walrus: ParenthesizableWhitespace<'a>,
     pub whitespace_after_walrus: ParenthesizableWhitespace<'a>,
 
-    pub(crate) walrus_tok: TokenRef<'a>,
+    pub walrus_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for NamedExpr<'a> {

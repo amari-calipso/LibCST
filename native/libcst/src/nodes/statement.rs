@@ -106,9 +106,9 @@ pub struct IndentedBlock<'a> {
     /// further.
     pub footer: Vec<EmptyLine<'a>>,
 
-    pub(crate) newline_tok: TokenRef<'a>,
-    pub(crate) indent_tok: TokenRef<'a>,
-    pub(crate) dedent_tok: TokenRef<'a>,
+    pub newline_tok: TokenRef<'a>,
+    pub indent_tok: TokenRef<'a>,
+    pub dedent_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for IndentedBlock<'a> {
@@ -192,8 +192,8 @@ pub struct SimpleStatementSuite<'a> {
     /// Any optional trailing comment and the final ``NEWLINE`` at the end of the line.
     pub trailing_whitespace: TrailingWhitespace<'a>,
 
-    pub(crate) first_tok: TokenRef<'a>,
-    pub(crate) newline_tok: TokenRef<'a>,
+    pub first_tok: TokenRef<'a>,
+    pub newline_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedSimpleStatementSuite<'r, 'a> {
@@ -251,8 +251,8 @@ pub struct SimpleStatementLine<'a> {
     /// Any optional trailing comment and the final ``NEWLINE`` at the end of the line.
     pub trailing_whitespace: TrailingWhitespace<'a>,
 
-    pub(crate) first_tok: TokenRef<'a>,
-    pub(crate) newline_tok: TokenRef<'a>,
+    pub first_tok: TokenRef<'a>,
+    pub newline_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for SimpleStatementLine<'a> {
@@ -469,7 +469,7 @@ pub struct AssignTarget<'a> {
     pub whitespace_before_equal: SimpleWhitespace<'a>,
     pub whitespace_after_equal: SimpleWhitespace<'a>,
 
-    pub(crate) equal_tok: TokenRef<'a>,
+    pub equal_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for AssignTarget<'a> {
@@ -516,7 +516,7 @@ pub struct Import<'a> {
     pub semicolon: Option<Semicolon<'a>>,
     pub whitespace_after_import: SimpleWhitespace<'a>,
 
-    pub(crate) import_tok: TokenRef<'a>,
+    pub import_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Import<'a> {
@@ -571,8 +571,8 @@ pub struct ImportFrom<'a> {
     pub whitespace_before_import: SimpleWhitespace<'a>,
     pub whitespace_after_import: SimpleWhitespace<'a>,
 
-    pub(crate) from_tok: TokenRef<'a>,
-    pub(crate) import_tok: TokenRef<'a>,
+    pub from_tok: TokenRef<'a>,
+    pub import_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for ImportFrom<'a> {
@@ -738,7 +738,7 @@ pub struct AsName<'a> {
     pub whitespace_before_as: ParenthesizableWhitespace<'a>,
     pub whitespace_after_as: ParenthesizableWhitespace<'a>,
 
-    pub(crate) as_tok: TokenRef<'a>,
+    pub as_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for AsName<'a> {
@@ -809,11 +809,11 @@ pub struct FunctionDef<'a> {
     pub whitespace_before_params: ParenthesizableWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) async_tok: Option<TokenRef<'a>>,
-    pub(crate) def_tok: TokenRef<'a>,
-    pub(crate) open_paren_tok: TokenRef<'a>,
-    pub(crate) close_paren_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub async_tok: Option<TokenRef<'a>>,
+    pub def_tok: TokenRef<'a>,
+    pub open_paren_tok: TokenRef<'a>,
+    pub close_paren_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> DeflatedFunctionDef<'r, 'a> {
@@ -964,8 +964,8 @@ pub struct Decorator<'a> {
     pub whitespace_after_at: SimpleWhitespace<'a>,
     pub trailing_whitespace: TrailingWhitespace<'a>,
 
-    pub(crate) at_tok: TokenRef<'a>,
-    pub(crate) newline_tok: TokenRef<'a>,
+    pub at_tok: TokenRef<'a>,
+    pub newline_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Decorator<'a> {
@@ -1029,8 +1029,8 @@ pub struct If<'a> {
     #[cfg_attr(feature = "py", skip_py)]
     pub is_elif: bool,
 
-    pub(crate) if_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub if_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for If<'a> {
@@ -1097,8 +1097,8 @@ pub struct Else<'a> {
     /// The whitespace appearing after the ``else`` keyword but before the colon.
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) else_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub else_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Else<'a> {
@@ -1143,7 +1143,7 @@ pub struct Annotation<'a> {
     pub whitespace_before_indicator: Option<ParenthesizableWhitespace<'a>>,
     pub whitespace_after_indicator: ParenthesizableWhitespace<'a>,
 
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'a> Annotation<'a> {
@@ -1240,7 +1240,7 @@ pub struct Return<'a> {
     pub whitespace_after_return: Option<SimpleWhitespace<'a>>,
     pub semicolon: Option<Semicolon<'a>>,
 
-    pub(crate) return_tok: TokenRef<'a>,
+    pub return_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Return<'a> {
@@ -1298,7 +1298,7 @@ pub struct Assert<'a> {
     pub whitespace_after_assert: SimpleWhitespace<'a>,
     pub semicolon: Option<Semicolon<'a>>,
 
-    pub(crate) assert_tok: TokenRef<'a>,
+    pub assert_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Assert<'a> {
@@ -1355,7 +1355,7 @@ pub struct Raise<'a> {
     pub whitespace_after_raise: Option<SimpleWhitespace<'a>>,
     pub semicolon: Option<Semicolon<'a>>,
 
-    pub(crate) raise_tok: TokenRef<'a>,
+    pub raise_tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedRaise<'r, 'a> {
@@ -1450,7 +1450,7 @@ pub struct Global<'a> {
     pub whitespace_after_global: SimpleWhitespace<'a>,
     pub semicolon: Option<Semicolon<'a>>,
 
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedGlobal<'r, 'a> {
@@ -1495,7 +1495,7 @@ pub struct Nonlocal<'a> {
     pub whitespace_after_nonlocal: SimpleWhitespace<'a>,
     pub semicolon: Option<Semicolon<'a>>,
 
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedNonlocal<'r, 'a> {
@@ -1548,10 +1548,10 @@ pub struct For<'a> {
     pub whitespace_after_in: SimpleWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) async_tok: Option<TokenRef<'a>>,
-    pub(crate) for_tok: TokenRef<'a>,
-    pub(crate) in_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub async_tok: Option<TokenRef<'a>>,
+    pub for_tok: TokenRef<'a>,
+    pub in_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for For<'a> {
@@ -1646,8 +1646,8 @@ pub struct While<'a> {
     pub whitespace_after_while: SimpleWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) while_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub while_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for While<'a> {
@@ -1715,10 +1715,10 @@ pub struct ClassDef<'a> {
     pub whitespace_after_type_parameters: SimpleWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) class_tok: TokenRef<'a>,
-    pub(crate) lpar_tok: Option<TokenRef<'a>>,
-    pub(crate) rpar_tok: Option<TokenRef<'a>>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub class_tok: TokenRef<'a>,
+    pub lpar_tok: Option<TokenRef<'a>>,
+    pub rpar_tok: Option<TokenRef<'a>>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for ClassDef<'a> {
@@ -1847,8 +1847,8 @@ pub struct Finally<'a> {
     pub leading_lines: Vec<EmptyLine<'a>>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) finally_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub finally_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Finally<'a> {
@@ -1895,8 +1895,8 @@ pub struct ExceptHandler<'a> {
     pub whitespace_after_except: SimpleWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) except_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub except_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for ExceptHandler<'a> {
@@ -1966,9 +1966,9 @@ pub struct ExceptStarHandler<'a> {
     pub whitespace_after_star: SimpleWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) except_tok: TokenRef<'a>,
-    pub(crate) star_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub except_tok: TokenRef<'a>,
+    pub star_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for ExceptStarHandler<'a> {
@@ -2035,7 +2035,7 @@ pub struct Try<'a> {
     pub leading_lines: Vec<EmptyLine<'a>>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) try_tok: TokenRef<'a>,
+    pub try_tok: TokenRef<'a>,
     // colon_tok unnecessary
 }
 
@@ -2095,7 +2095,7 @@ pub struct TryStar<'a> {
     pub leading_lines: Vec<EmptyLine<'a>>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) try_tok: TokenRef<'a>,
+    pub try_tok: TokenRef<'a>,
     // colon_tok unnecessary
 }
 
@@ -2244,9 +2244,9 @@ pub struct With<'a> {
     pub whitespace_after_with: SimpleWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) async_tok: Option<TokenRef<'a>>,
-    pub(crate) with_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub async_tok: Option<TokenRef<'a>>,
+    pub with_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for With<'a> {
@@ -2393,7 +2393,7 @@ pub struct Del<'a> {
     pub whitespace_after_del: SimpleWhitespace<'a>,
     pub semicolon: Option<Semicolon<'a>>,
 
-    pub(crate) tok: TokenRef<'a>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedDel<'r, 'a> {
@@ -2440,10 +2440,10 @@ pub struct Match<'a> {
     pub indent: Option<&'a str>,
     pub footer: Vec<EmptyLine<'a>>,
 
-    pub(crate) match_tok: TokenRef<'a>,
-    pub(crate) colon_tok: TokenRef<'a>,
-    pub(crate) indent_tok: TokenRef<'a>,
-    pub(crate) dedent_tok: TokenRef<'a>,
+    pub match_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
+    pub indent_tok: TokenRef<'a>,
+    pub dedent_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Match<'a> {
@@ -2525,9 +2525,9 @@ pub struct MatchCase<'a> {
     pub whitespace_after_if: SimpleWhitespace<'a>,
     pub whitespace_before_colon: SimpleWhitespace<'a>,
 
-    pub(crate) case_tok: TokenRef<'a>,
-    pub(crate) if_tok: Option<TokenRef<'a>>,
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub case_tok: TokenRef<'a>,
+    pub if_tok: Option<TokenRef<'a>>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for MatchCase<'a> {
@@ -2912,7 +2912,7 @@ pub struct MatchStar<'a> {
     pub comma: Option<Comma<'a>>,
     pub whitespace_before_name: ParenthesizableWhitespace<'a>,
 
-    pub(crate) star_tok: TokenRef<'a>,
+    pub star_tok: TokenRef<'a>,
 }
 
 impl<'a> MatchStar<'a> {
@@ -2976,7 +2976,7 @@ pub struct MatchMapping<'a> {
 
     pub whitespace_before_rest: SimpleWhitespace<'a>,
 
-    pub(crate) star_tok: Option<TokenRef<'a>>,
+    pub star_tok: Option<TokenRef<'a>>,
 }
 
 impl<'a> Codegen<'a> for MatchMapping<'a> {
@@ -3050,7 +3050,7 @@ pub struct MatchMappingElement<'a> {
     pub whitespace_before_colon: ParenthesizableWhitespace<'a>,
     pub whitespace_after_colon: ParenthesizableWhitespace<'a>,
 
-    pub(crate) colon_tok: TokenRef<'a>,
+    pub colon_tok: TokenRef<'a>,
 }
 
 impl<'a> MatchMappingElement<'a> {
@@ -3118,8 +3118,8 @@ pub struct MatchClass<'a> {
     pub whitespace_before_patterns: ParenthesizableWhitespace<'a>,
     pub whitespace_after_kwds: ParenthesizableWhitespace<'a>,
 
-    pub(crate) lpar_tok: TokenRef<'a>,
-    pub(crate) rpar_tok: TokenRef<'a>,
+    pub lpar_tok: TokenRef<'a>,
+    pub rpar_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for MatchClass<'a> {
@@ -3201,7 +3201,7 @@ pub struct MatchKeywordElement<'a> {
     pub whitespace_before_equal: ParenthesizableWhitespace<'a>,
     pub whitespace_after_equal: ParenthesizableWhitespace<'a>,
 
-    pub(crate) equal_tok: TokenRef<'a>,
+    pub equal_tok: TokenRef<'a>,
 }
 
 impl<'a> MatchKeywordElement<'a> {
@@ -3267,7 +3267,7 @@ pub struct MatchAs<'a> {
     pub whitespace_before_as: Option<ParenthesizableWhitespace<'a>>,
     pub whitespace_after_as: Option<ParenthesizableWhitespace<'a>>,
 
-    pub(crate) as_tok: Option<TokenRef<'a>>,
+    pub as_tok: Option<TokenRef<'a>>,
 }
 
 impl<'a> Codegen<'a> for MatchAs<'a> {
@@ -3411,7 +3411,7 @@ pub struct TypeVarTuple<'a> {
 
     pub whitespace_after_star: SimpleWhitespace<'a>,
 
-    pub(crate) star_tok: TokenRef<'a>,
+    pub star_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for TypeVarTuple<'a> {
@@ -3441,7 +3441,7 @@ pub struct ParamSpec<'a> {
 
     pub whitespace_after_star: SimpleWhitespace<'a>,
 
-    pub(crate) star_tok: TokenRef<'a>,
+    pub star_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for ParamSpec<'a> {
@@ -3574,9 +3574,9 @@ pub struct TypeAlias<'a> {
     pub whitespace_after_equals: SimpleWhitespace<'a>,
     pub semicolon: Option<Semicolon<'a>>,
 
-    pub(crate) type_tok: TokenRef<'a>,
-    pub(crate) lbracket_tok: Option<TokenRef<'a>>,
-    pub(crate) equals_tok: TokenRef<'a>,
+    pub type_tok: TokenRef<'a>,
+    pub lbracket_tok: Option<TokenRef<'a>>,
+    pub equals_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for TypeAlias<'a> {
