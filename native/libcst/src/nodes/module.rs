@@ -32,7 +32,7 @@ pub struct Module<'a> {
     pub has_trailing_newline: bool,
     pub encoding: String,
 
-    pub(crate) eof_tok: TokenRef<'a>,
+    pub eof_tok: TokenRef<'a>,
 }
 
 impl<'a> Codegen<'a> for Module<'a> {
