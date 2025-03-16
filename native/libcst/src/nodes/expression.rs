@@ -15,16 +15,12 @@ use crate::{
         Annotation, AssignEqual, AssignTargetExpression, BinaryOp, BooleanOp, Codegen,
         CodegenState, Colon, Comma, CompOp, Dot, UnaryOp,
     },
-    tokenizer::{
-        whitespace_parser::{parse_parenthesizable_whitespace, Config},
-        Token,
-    },
+    tokenizer::whitespace_parser::{parse_parenthesizable_whitespace, Config},
+    TokenRef,
 };
 #[cfg(feature = "py")]
 use libcst_derive::TryIntoPy;
 use libcst_derive::{cst_node, Codegen, Inflate, ParenthesizedDeflatedNode, ParenthesizedNode};
-
-type TokenRef<'r, 'a> = &'r Token<'a>;
 
 #[cst_node(Default)]
 pub struct Parameters<'a> {

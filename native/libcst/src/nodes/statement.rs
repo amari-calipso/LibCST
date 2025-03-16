@@ -20,20 +20,15 @@ use crate::{
             WithLeadingLines,
         },
     },
-    tokenizer::{
-        whitespace_parser::{
-            parse_empty_lines, parse_parenthesizable_whitespace, parse_simple_whitespace,
-            parse_trailing_whitespace, Config,
-        },
-        Token,
+    tokenizer::whitespace_parser::{
+        parse_empty_lines, parse_parenthesizable_whitespace, parse_simple_whitespace,
+        parse_trailing_whitespace, Config,
     },
-    LeftCurlyBrace, LeftSquareBracket, RightCurlyBrace, RightSquareBracket,
+    LeftCurlyBrace, LeftSquareBracket, RightCurlyBrace, RightSquareBracket, TokenRef,
 };
 #[cfg(feature = "py")]
 use libcst_derive::TryIntoPy;
 use libcst_derive::{cst_node, Codegen, Inflate, ParenthesizedDeflatedNode, ParenthesizedNode};
-
-type TokenRef<'r, 'a> = &'r Token<'a>;
 
 #[allow(clippy::large_enum_variant)]
 #[cst_node(Inflate, Codegen)]

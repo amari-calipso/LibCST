@@ -6,7 +6,7 @@
 use std::mem::swap;
 
 use crate::tokenizer::whitespace_parser::parse_empty_lines;
-use crate::tokenizer::Token;
+use crate::TokenRef;
 use crate::{
     nodes::{
         codegen::{Codegen, CodegenState},
@@ -20,8 +20,6 @@ use libcst_derive::cst_node;
 use libcst_derive::TryIntoPy;
 
 use super::traits::{Inflate, Result, WithLeadingLines};
-
-type TokenRef<'r, 'a> = &'r Token<'a>;
 
 #[cst_node]
 pub struct Module<'a> {

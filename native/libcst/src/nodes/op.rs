@@ -6,16 +6,12 @@
 use super::{whitespace::ParenthesizableWhitespace, Codegen, CodegenState};
 use crate::{
     nodes::traits::{Inflate, Result},
-    tokenizer::{
-        whitespace_parser::{parse_parenthesizable_whitespace, parse_simple_whitespace, Config},
-        Token,
-    },
+    tokenizer::whitespace_parser::{parse_parenthesizable_whitespace, parse_simple_whitespace, Config},
+    TokenRef,
 };
 use libcst_derive::cst_node;
 #[cfg(feature = "py")]
 use libcst_derive::TryIntoPy;
-
-type TokenRef<'r, 'a> = &'r Token<'a>;
 
 #[cst_node]
 pub struct Semicolon<'a> {

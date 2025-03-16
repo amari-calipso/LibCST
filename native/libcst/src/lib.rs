@@ -5,6 +5,8 @@
 
 use std::cmp::{max, min};
 
+pub type TokenRef<'r, 'a> = &'r Token<'a>;
+
 pub mod tokenizer;
 
 pub use tokenizer::whitespace_parser::Config;
