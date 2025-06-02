@@ -5,7 +5,7 @@
 
 use regex::Regex;
 
-use crate::nodes::deflated::{Expression, Float, Imaginary, Integer};
+use crate::{nodes::deflated::{Expression, Float, Imaginary, Integer}, TokenRef};
 
 static HEX: &str = r"0[xX](?:_?[0-9a-fA-F])+";
 static BIN: &str = r"0[bB](?:_?[01])+";
@@ -40,30 +40,34 @@ thread_local! {
         .expect("regex");
 }
 
-pub(crate) fn parse_number(raw: &str) -> Expression {
-    if INTEGER_RE.with(|r| r.is_match(raw)) {
+pub(crate) fn parse_number<'r, 'a>(tok: TokenRef<'r, 'a>) -> Expression<'r, 'a> {
+    if INTEGER_RE.with(|r| r.is_match(tok.string)) {
         Expression::Integer(Box::new(Integer {
-            value: raw,
+            value: tok.string,
             lpar: Default::default(),
             rpar: Default::default(),
+            tok
         }))
-    } else if FLOAT_RE.with(|r| r.is_match(raw)) {
+    } else if FLOAT_RE.with(|r| r.is_match(tok.string)) {
         Expression::Float(Box::new(Float {
-            value: raw,
+            value: tok.string,
             lpar: Default::default(),
             rpar: Default::default(),
+            tok
         }))
-    } else if IMAGINARY_RE.with(|r| r.is_match(raw)) {
+    } else if IMAGINARY_RE.with(|r| r.is_match(tok.string)) {
         Expression::Imaginary(Box::new(Imaginary {
-            value: raw,
+            value: tok.string,
             lpar: Default::default(),
             rpar: Default::default(),
+            tok
         }))
     } else {
         Expression::Integer(Box::new(Integer {
-            value: raw,
+            value: tok.string,
             lpar: Default::default(),
             rpar: Default::default(),
+            tok
         }))
     }
 }

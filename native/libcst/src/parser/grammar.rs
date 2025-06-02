@@ -142,8 +142,8 @@ parser! {
             / &lit("del") s:del_stmt() { SmallStatement::Del(s) }
             / &lit("yield") s:yield_stmt() { SmallStatement::Expr(Expr { value: s, semicolon: None }) }
             / &lit("assert") s:assert_stmt() {SmallStatement::Assert(s)}
-            / lit("break") { SmallStatement::Break(Break { semicolon: None })}
-            / lit("continue") { SmallStatement::Continue(Continue { semicolon: None })}
+            / kw:lit("break") { SmallStatement::Break(Break { tok: kw, semicolon: None })}
+            / kw:lit("continue") { SmallStatement::Continue(Continue { tok: kw, semicolon: None })}
             / &lit("global") s:global_stmt() {SmallStatement::Global(s)}
             / &lit("nonlocal") s:nonlocal_stmt() {SmallStatement::Nonlocal(s)}
 
@@ -430,12 +430,12 @@ parser! {
 
         rule param() -> Param<'input, 'a>
             = n:name() a:annotation()? {
-                Param {name: n, annotation: a, ..Default::default() }
+                Param {name:n, annotation:a, equal: None, default: None, comma: None, star: None, star_tok: None }
             }
 
         rule param_star_annotation() -> Param<'input, 'a>
             = n:name() a:star_annotation() {
-                Param {name: n, annotation: Some(a), ..Default::default() }
+                Param {name: n, annotation: Some(a), equal: None, default: None, comma: None, star: None, star_tok: None }
             }
 
         rule annotation() -> Annotation<'input, 'a>
@@ -1145,7 +1145,7 @@ parser! {
             }
 
         rule lambda_param() -> Param<'input, 'a>
-            = name:name() { Param { name, ..Default::default() } }
+            = name:name() { Param {name, annotation: None, equal: None, default: None, comma: None, star: None, star_tok: None } }
 
         // Literals
 
@@ -1721,7 +1721,7 @@ fn make_unary_operator<'input, 'a>(tok: TokenRef<'input, 'a>) -> Result<'a, Unar
 }
 
 fn make_number<'input, 'a>(num: TokenRef<'input, 'a>) -> Expression<'input, 'a> {
-    super::numbers::parse_number(num.string)
+    super::numbers::parse_number(num)
 }
 
 fn make_indented_block<'input, 'a>(
@@ -1919,7 +1919,9 @@ fn make_name_or_attr<'input, 'a>(
 fn make_name<'input, 'a>(tok: TokenRef<'input, 'a>) -> Name<'input, 'a> {
     Name {
         value: tok.string,
-        ..Default::default()
+        lpar: Vec::new(),
+        rpar: Vec::new(),
+        tok,
     }
 }
 
@@ -2853,7 +2855,9 @@ fn make_class_def<'input, 'a>(
 fn make_string<'input, 'a>(tok: TokenRef<'input, 'a>) -> String<'input, 'a> {
     String::Simple(SimpleString {
         value: tok.string,
-        ..Default::default()
+        lpar: Vec::new(),
+        rpar: Vec::new(),
+        tok,
     })
 }
 

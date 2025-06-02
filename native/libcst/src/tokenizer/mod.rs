@@ -6,7 +6,7 @@
 mod core;
 mod debug_utils;
 mod operators;
-mod text_position;
+pub(crate) mod text_position;
 pub mod whitespace_parser;
 
 pub use self::core::*;

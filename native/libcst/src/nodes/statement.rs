@@ -351,10 +351,11 @@ impl<'r, 'a> Inflate<'a> for DeflatedPass<'r, 'a> {
 #[cst_node]
 pub struct Break<'a> {
     pub semicolon: Option<Semicolon<'a>>,
+    pub tok: TokenRef<'a>
 }
 impl<'r, 'a> DeflatedBreak<'r, 'a> {
     pub fn with_semicolon(self, semicolon: Option<DeflatedSemicolon<'r, 'a>>) -> Self {
-        Self { semicolon }
+        Self { tok: self.tok, semicolon }
     }
 }
 impl<'a> Codegen<'a> for Break<'a> {
@@ -374,10 +375,11 @@ impl<'r, 'a> Inflate<'a> for DeflatedBreak<'r, 'a> {
 #[cst_node]
 pub struct Continue<'a> {
     pub semicolon: Option<Semicolon<'a>>,
+    pub tok: TokenRef<'a>
 }
 impl<'r, 'a> DeflatedContinue<'r, 'a> {
     pub fn with_semicolon(self, semicolon: Option<DeflatedSemicolon<'r, 'a>>) -> Self {
-        Self { semicolon }
+        Self { tok: self.tok, semicolon }
     }
 }
 impl<'a> Codegen<'a> for Continue<'a> {

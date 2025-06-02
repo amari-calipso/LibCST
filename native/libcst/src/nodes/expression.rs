@@ -187,11 +187,12 @@ impl<'r, 'a> Inflate<'a> for DeflatedParamStar<'r, 'a> {
     }
 }
 
-#[cst_node(ParenthesizedNode, Default)]
+#[cst_node(ParenthesizedNode)]
 pub struct Name<'a> {
     pub value: &'a str,
     pub lpar: Vec<LeftParen<'a>>,
     pub rpar: Vec<RightParen<'a>>,
+    pub tok: TokenRef<'a>,
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedName<'r, 'a> {
@@ -256,20 +257,6 @@ impl<'r, 'a> Inflate<'a> for DeflatedParam<'r, 'a> {
             whitespace_after_star,
             whitespace_after_param,
         })
-    }
-}
-
-impl<'r, 'a> Default for DeflatedParam<'r, 'a> {
-    fn default() -> Self {
-        Self {
-            name: Default::default(),
-            annotation: None,
-            equal: None,
-            default: None,
-            comma: None,
-            star: Some(""), // Note: this preserves a quirk of the pure python parser
-            star_tok: None,
-        }
     }
 }
 
@@ -502,6 +489,7 @@ pub struct Integer<'a> {
     pub value: &'a str,
     pub lpar: Vec<LeftParen<'a>>,
     pub rpar: Vec<RightParen<'a>>,
+    pub tok: TokenRef<'a>
 }
 
 impl<'a> Codegen<'a> for Integer<'a> {
@@ -532,6 +520,7 @@ pub struct Float<'a> {
     pub value: &'a str,
     pub lpar: Vec<LeftParen<'a>>,
     pub rpar: Vec<RightParen<'a>>,
+    pub tok: TokenRef<'a>
 }
 
 impl<'a> Codegen<'a> for Float<'a> {
@@ -561,6 +550,7 @@ pub struct Imaginary<'a> {
     pub value: &'a str,
     pub lpar: Vec<LeftParen<'a>>,
     pub rpar: Vec<RightParen<'a>>,
+    pub tok: TokenRef<'a>
 }
 
 impl<'a> Codegen<'a> for Imaginary<'a> {
@@ -2301,7 +2291,7 @@ impl<'a> Codegen<'a> for ConcatenatedString<'a> {
     }
 }
 
-#[cst_node(ParenthesizedNode, Default)]
+#[cst_node(ParenthesizedNode)]
 pub struct SimpleString<'a> {
     /// The texual representation of the string, including quotes, prefix
     /// characters, and any escape characters present in the original source code,
@@ -2309,6 +2299,7 @@ pub struct SimpleString<'a> {
     pub value: &'a str,
     pub lpar: Vec<LeftParen<'a>>,
     pub rpar: Vec<RightParen<'a>>,
+    pub tok: TokenRef<'a>
 }
 
 impl<'r, 'a> Inflate<'a> for DeflatedSimpleString<'r, 'a> {
